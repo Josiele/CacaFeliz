@@ -5,12 +5,12 @@
 using namespace cv;
 using namespace std;
 
-int main(int, char**){
+int main(int argc, char** argv){
   Mat image;
   Vec3b val;
   int x1, x2, y1, y2;
 
-  image= imread("bolhas.png",CV_LOAD_IMAGE_GRAYSCALE);
+  image= imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);
   if(!image.data)
     cout << "nao abriu bolhas.png" << endl;
 
