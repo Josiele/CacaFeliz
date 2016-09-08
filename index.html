@@ -5,7 +5,8 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>My First Experience with the Dangers of Documentation</title>
+<meta name="author" content="DJANILSON LOPES MARTINS, MARIA JOSIELE DE QUEIROZ &lt, josiele j@hotmail.com&gt">
+<title>Processamento Digital de Imagens</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -416,35 +417,259 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
+<style>
+/* Pygments styles disabled. Pygments is not available. */
+</style>
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>My First Experience with the Dangers of Documentation</h1>
+<h1>Processamento Digital de Imagens</h1>
+<div class="details">
+<span id="author" class="author">DJANILSON LOPES MARTINS</span><br>
+<span id="email" class="email"><a href="mailto:djanlm@yahoo.com.br">djanlm@yahoo.com.br</a></span><br>
+<span id="author2" class="author">MARIA JOSIELE DE QUEIROZ &lt</span><br>
+<span id="author3" class="author">josiele j@hotmail.com&gt</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Sumário</div>
+<ul class="sectlevel1">
+<li><a href="#_1_introdução">1. Introdução</a></li>
+<li><a href="#_2_manipulando_pixels_em_uma_imagem">2. Manipulando pixels em uma imagem</a>
+<ul class="sectlevel2">
+<li><a href="#_2_1_negativo_de_uma_região_da_imagem">2.1 Negativo de uma região da imagem</a></li>
+<li><a href="#_2_2_trocando_regiões_de_uma_imagem">2.2 Trocando regiões de uma imagem</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
-<div id="preamble">
+<div class="sect1">
+<h2 id="_1_introdução">1. Introdução</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In my world, we don&#8217;t have to worry about mutant, script-injecting warlocks.
-No.
-We have something far worse.
-We&#8217;re plagued by Wolpertingers.</p>
+<p>Escrever Introducao</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_origins">Origins</h2>
+<h2 id="_2_manipulando_pixels_em_uma_imagem">2. Manipulando pixels em uma imagem</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_2_1_negativo_de_uma_região_da_imagem">2.1 Negativo de uma região da imagem</h3>
 <div class="paragraph">
-<p>You may not be familiar with these <a href="http://en.wikipedia.org/wiki/Wolpertinger">ravenous beasts</a>, but, trust me, they&#8217;ll eat your shorts and suck the loops from your code.</p>
+<p><a href="http://agostinhobritojr.github.io/tutoriais/pdi/#_exerc%C3%ADcios">Ver exercício 3.2.1</a></p>
+</div>
+<div class="paragraph">
+<p>O programa tem como parâmetro o caminho para um arquivo de imagem, que será carregada em um objeto do tipo Mat no formato de tons de cinza.
+Uma região retangular dessa imagem, definida pelo usuário através das variaveis P1X, P2X, P1Y e P2Y, terá seus valores negativados, para
+isso o valores dos pixels da região selecionada será 255 subtraído por ele mesmo. Dessa forma, a região definida pelo usuário terá tons
+de cinza opostos ao original, criando o efeito de negativo.</p>
+</div>
+<div class="paragraph">
+<p>Abaixo encontra-se o código do programa <a href="Projetos/regions.cpp">regions.cpp</a>.</p>
+</div>
+<div id="exa_regions" class="listingblock">
+<div class="title">Listagem 1: regions.cpp</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp">#include &lt;iostream&gt;
+#include &lt;cv.h&gt;
+#include "opencv2/highgui/highgui.hpp"
+
+/*
+    Quatro parametros são entrada para esse programa, Xi, Xf, Yi e Yf, que são
+    usado para determinar a região que será negativada.
+*/
+
+using namespace cv;
+using namespace std;
+
+int main(int, char** argv){
+    Mat img;
+    int P1X, P1Y, P2X, P2Y;
+
+    img= imread(argv[1], CV_LOAD_IMAGE_GRAYSCALE);
+    if(!img.data)
+       cout &lt;&lt; "error - image can't open" &lt;&lt; endl;
+
+    int xMax = img.rows;
+    int yMax = img.cols;
+
+    cout &lt;&lt; "size (" &lt;&lt; xMax &lt;&lt; ", " &lt;&lt; yMax &lt;&lt; ")" &lt;&lt; endl;
+
+    cout &lt;&lt; "Xi = ";
+    cin &gt;&gt; P1X;
+    cout &lt;&lt; "Xf = ";
+    cin &gt;&gt; P2X;
+
+    cout &lt;&lt; "Yi = ";
+    cin &gt;&gt; P1Y;
+    cout &lt;&lt; "Yf = ";
+    cin &gt;&gt; P2Y;
+
+    for (int i = P1X; i &lt; P2X; i++) {
+        for (int j = P1Y; j &lt; P2Y; j++) {
+            img.at&lt;uchar&gt;(i,j) = 255 - img.at&lt;uchar&gt;(i,j); // Operação de negativo pixel = 255 - pixel
+        }
+    }
+
+    namedWindow("window",WINDOW_AUTOSIZE);
+    imshow("window", img);
+    waitKey();
+    return 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Aplicamos o algoritmo informando as entradas (15, 30) e (300, 280) para a imagem <a href="#fig_arara">arara.png</a>. O resultado obtido é mostrado na imagem <a href="#fig_negativo_arara">negativo_arara.png</a>.</p>
+</div>
+<div id="fig_arara" class="imageblock">
+<div class="content">
+<img src="images/arara.png" alt="Imagem original">
+</div>
+<div class="title">Figure 1. Imagem original</div>
+</div>
+<div id="fig_negativo_arara" class="imageblock">
+<div class="content">
+<img src="images/negativo_arara.png" alt="Imagem processada">
+</div>
+<div class="title">Figure 2. Imagem processada</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_2_trocando_regiões_de_uma_imagem">2.2 Trocando regiões de uma imagem</h3>
+<div class="paragraph">
+<p><a href="http://agostinhobritojr.github.io/tutoriais/pdi/#_exerc%C3%ADcios">Ver exercício 3.2.2</a></p>
+</div>
+<div class="paragraph">
+<p>O programa <a href="#exa_troca_regions">trocaRegioes.cpp</a> tem como parâmetro um caminho para uma imagem, que será então carregada em tons de cinza. Esta imagem será dividida em quatro subregiões que serão embaralhadas, criando um quebra-cabeça, conforme um vetor de índices gerado randomicamente. Para a formação do quebra-cabeça os vetores 'vert', que armazena as coordenadas x e y das 4 subregiões no formato[x0,y0,x1,y2,&#8230;&#8203;],
+e o vetor 'vertPuzzle', que contêm a ordem em que as subregiões irão entrar na imagem do quebra-cabeça. A função copyTo(Mat, ROI) foi usada para fazer a cópia da região da imagem original para a nova região, dada pelo vetor 'vertPuzzle', no quebra-cabeça.</p>
+</div>
+<div class="paragraph">
+<p><a href="Projetos/trocaRegioes.cpp">Clique aqui</a> para obter o código do programa abaixo.</p>
+</div>
+<div id="exa_troca_regions" class="listingblock">
+<div class="title">Listagem 2: trocaRegioes.cpp</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp">#include &lt;iostream&gt;
+#include &lt;cv.h&gt;
+#include "opencv2/highgui/highgui.hpp"
+#define NSUBIMAGES 4
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+
+using namespace cv;
+using namespace std;
+
+int main(int, char** argv){
+    Mat img;
+    Mat newImg;
+
+    img = imread(argv[1], CV_LOAD_IMAGE_GRAYSCALE);
+
+    if (!img.data) {
+        cout &lt;&lt; "Image " &lt;&lt; argv[1] &lt;&lt; " could not be opened";
+    }
+
+    int imgRows = img.rows;
+    int imgCols = img.cols;
+    int subImageRows = imgRows/(NSUBIMAGES/2);
+    int subImageCols = imgCols/(NSUBIMAGES/2);
+
+    vector&lt;int&gt; vert;
+    //vector&lt;Mat&gt; subImgs;
+    vector&lt;int&gt; vertPuzzle;
+
+    cout &lt;&lt; "image size: " &lt;&lt; imgRows &lt;&lt; "x" &lt;&lt; imgCols &lt;&lt; endl;
+
+    cout &lt;&lt; "sub image size: " &lt;&lt; subImageRows &lt;&lt; "x" &lt;&lt; subImageCols &lt;&lt; endl;
+
+    //cria vetor com os pontos de inicio de cada sub imagem
+    for (int i =0 ; i &lt; NSUBIMAGES/2; i++) {
+        for (int j = 0; j &lt; NSUBIMAGES/2; j++) {
+            vert.push_back(i*subImageRows);
+            vert.push_back(j*subImageCols);
+            cout &lt;&lt; "vertice: (" &lt;&lt; i*subImageRows &lt;&lt; "," &lt;&lt; j*subImageCols &lt;&lt; ")" &lt;&lt; endl;
+        }
+    }
+
+    //cria vetor aleatorio para criacao do quebra cabeca
+    while (vertPuzzle.size()&lt;NSUBIMAGES) {
+        int temp = rand() % NSUBIMAGES;
+        int flag = -1;
+        for (int i = 0; i &lt; vertPuzzle.size() ; i++) {
+            if (temp == vertPuzzle.at(i)) {
+                flag = 1;
+            }
+        }
+        if (flag == -1) {
+            vertPuzzle.push_back(temp);
+        }
+    }
+
+    //imprime o vetor de reordenacao na tela
+    cout &lt;&lt; "vetor de reordenção: ";
+    for (int i=0; i&lt; vertPuzzle.size(); i++) {
+        cout &lt;&lt; vertPuzzle.at(i) &lt;&lt; ", ";
+    }
+    cout &lt;&lt; endl;;
+
+
+    newImg = img.clone();
+    //rotina para copiar uma RIO da imagem original para outra posicao no quebra cabeca
+    for (int i = 0; i &lt; NSUBIMAGES; i++) {
+        int x = vert.at(2*vertPuzzle.at(i)+1);
+        int y = vert.at(2*vertPuzzle.at(i));
+	int x0 = vert.at(2*i+1);
+        int y0 = vert.at(2*i);
+        Mat(img, Rect(x0, y0, subImageCols, subImageRows)).copyTo(Mat(newImg, Rect(x, y, subImageCols,subImageRows)));
+    }
+
+    namedWindow("PuzzleImage", WINDOW_AUTOSIZE);
+    imshow("PuzzleImage", newImg);
+    namedWindow("Image", WINDOW_AUTOSIZE);
+    imshow("Image", img);
+
+    waitKey();
+    return 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O resultado do processamento acima na imagem <a href="images/arara.png">arara.png</a> está mostrado na imagem abaixo.</p>
+</div>
+<div id="fig_troca_regions_arara" class="imageblock">
+<div class="content">
+<img src="images/troca_regions_arara.png" alt="Imagem processada">
+</div>
+<div class="title">Figure 3. Imagem processada</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-07 23:59:12 BRT
+Last updated 2016-09-08 00:14:45 BRT
 </div>
 </div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
