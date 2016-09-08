@@ -437,6 +437,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_2_manipulando_pixels_em_uma_imagem">2. Manipulando pixels em uma imagem</a>
 <ul class="sectlevel2">
 <li><a href="#_2_1_negativo_de_uma_região_da_imagem">2.1 Negativo de uma região da imagem</a></li>
+<li><a href="#_2_2_trocar_regiões_da_imagem">2.2 Trocar regiões da imagem</a></li>
+</ul>
+</li>
+<li><a href="#_3_preenchendo_regiões">3. Preenchendo regiões</a>
+<ul class="sectlevel2">
+<li><a href="#_3_1_rotulação_com_mais_de_255_objetos">3.1 Rotulação com mais de 255 objetos</a></li>
+<li><a href="#_3_2_contagem_bolhas">3.2 Contagem Bolhas</a></li>
+</ul>
+</li>
+<li><a href="#_4_manipulação_de_histogramas">4. Manipulação de histogramas</a>
+<ul class="sectlevel2">
+<li><a href="#_4_1_equalização_de_histogramas">4.1 Equalização de histogramas</a></li>
+<li><a href="#_4_2_detector_de_movimento">4.2 Detector de movimento</a></li>
+</ul>
+</li>
+<li><a href="#_5_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</a>
+<ul class="sectlevel2">
+<li><a href="#_5_1">5.1</a></li>
+<li><a href="#_5_2">5.2</a></li>
 </ul>
 </li>
 </ul>
@@ -457,6 +476,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_2_1_negativo_de_uma_região_da_imagem">2.1 Negativo de uma região da imagem</h3>
 <div class="paragraph">
+<p>acho (y x)180 130</p>
+</div>
+<div class="paragraph">
+<p>500 500</p>
+</div>
+<div class="paragraph">
 <p>Abaixo encontra-se o código do programa <a href="regions.cpp">regions.cpp</a>.</p>
 </div>
 <div id="exa_regions" class="listingblock">
@@ -469,12 +494,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 using namespace cv;
 using namespace std;
 
-int main(int, char**){
+int main(int argc, char** argv){
   Mat image;
   Vec3b val;
   int x1, x2, y1, y2;
 
-  image= imread("bolhas.png",CV_LOAD_IMAGE_GRAYSCALE);
+  image= imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);
   if(!image.data)
     cout &lt;&lt; "nao abriu bolhas.png" &lt;&lt; endl;
 
@@ -519,27 +544,76 @@ int main(int, char**){
 </div>
 </div>
 <div class="paragraph">
-<p>Aplicamos o algoritmo informando as entradas (15, 30) e (300, 280) para a imagem <a href="#fig_arara">arara.png</a>. O resultado obtido é mostrado na imagem <a href="#fig_negativo_arara">negativo_arara.png</a>.</p>
+<p>Aplicamos o algoritmo informando as entradas (15, 30) e (300, 280) para a imagem <a href="#fig_arara">[fig_arara]</a>. O resultado obtido é mostrado na imagem <a href="#fig_negativo_arara">[fig_negativo_arara]</a>.</p>
 </div>
-<div id="fig_arara" class="imageblock">
+<div id="fig_tigre" class="imageblock">
 <div class="content">
-<img src="images/arara.png" alt="Imagem original">
+<img src="tigre.png" alt="Imagem original">
 </div>
 <div class="title">Figure 1. Imagem original</div>
 </div>
-<div id="fig_negativo_arara" class="imageblock">
+<div id="fig_tigre_cinza" class="imageblock">
 <div class="content">
-<img src="images/negativo_arara.png" alt="Imagem processada">
+<img src="tigre2.png" alt="Imagem em tons de cinza">
 </div>
-<div class="title">Figure 2. Imagem processada</div>
+<div class="title">Figure 2. Imagem em tons de cinza</div>
 </div>
+<div id="fig_negativo_tigre" class="imageblock">
+<div class="content">
+<img src="tigre3.png" alt="Imagem processada">
+</div>
+<div class="title">Figure 3. Imagem processada</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_2_trocar_regiões_da_imagem">2.2 Trocar regiões da imagem</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_preenchendo_regiões">3. Preenchendo regiões</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_3_1_rotulação_com_mais_de_255_objetos">3.1 Rotulação com mais de 255 objetos</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_3_2_contagem_bolhas">3.2 Contagem Bolhas</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_4_manipulação_de_histogramas">4. Manipulação de histogramas</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_4_1_equalização_de_histogramas">4.1 Equalização de histogramas</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_4_2_detector_de_movimento">4.2 Detector de movimento</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_5_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_5_1">5.1</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_5_2">5.2</h3>
+
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-08 00:33:20 BRT
+Last updated 2016-09-08 01:37:58 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
