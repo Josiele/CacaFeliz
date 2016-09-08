@@ -576,11 +576,131 @@ int main(int argc, char** argv){
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_3_1_rotulação_com_mais_de_255_objetos">3.1 Rotulação com mais de 255 objetos</h3>
-
+<div class="paragraph">
+<p>Escrever Texto.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_3_2_contagem_bolhas">3.2 Contagem Bolhas</h3>
+<div id="fig_bolhas" class="imageblock">
+<div class="content">
+<img src="bolhas.png" alt="Imagem">
+</div>
+<div class="title">Figure 4. Imagem</div>
+</div>
+<div id="exa_labeling" class="listingblock">
+<div class="title">Listagem 2: labeling.cpp</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp">#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
 
+using namespace cv;
+using namespace std;
+
+int main(int argc, char** argv){
+  Mat image, mask;
+  int width, height;
+  int nobjects=0;
+  int comburaco=0, semburaco=0;
+
+  CvPoint p;
+  image = imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);
+
+  if(!image.data){
+    cout &lt;&lt; "imagem nao carregou corretamente\n";
+    return(-1);
+  }
+  width=image.size().width;
+  height=image.size().height;
+
+  p.x=0;
+  p.y=0;
+
+  //Eliminar bolhas da borda
+  //Primeiro for elimina as bolhas das bordas de cima e de baixo
+  for(int i=0; i&lt;height; i=i+(height-1)){
+    for(int j=0; j&lt;width; j++){
+      if(image.at&lt;uchar&gt;(i,j) == 255){
+                p.x=j;
+                p.y=i;
+                floodFill(image,p,0);
+          }
+      }
+  }
+  //Segundo for elimina as bolhas da borda da esquerda
+  for(int i=0; i&lt;height; i++){
+    for(int j=0; j&lt;width; j=j+width){
+      if(image.at&lt;uchar&gt;(i,j) == 255){
+                p.x=j;
+                p.y=i;
+                floodFill(image,p,0);
+          }
+      }
+    //Terceiro for elimina as bolhas da borda da direita
+    for(int k=width-1; k&lt;width; k=k+width){
+      if(image.at&lt;uchar&gt;(i,k) == 255){
+                p.x=k;
+                p.y=i;
+                floodFill(image,p,0);
+          }
+      }
+  }
+  //final de tirar as bolhas das bordas
+
+  int count=0;//Acro que esse contador eh a resposta da primeira pergunta da secao 4
+
+  //busca objetos com e sem buracos presentes(desconsiderando os das bordas) mantendo a cor das bolhas
+  nobjects=200;
+  for(int i=0; i&lt;height; i++){
+    for(int j=0; j&lt;width; j++){
+      if(image.at&lt;uchar&gt;(i,j) == 255){
+		// achou um objeto
+		nobjects++;
+		p.x=j;
+		p.y=i;
+                floodFill(image,p,nobjects);
+                count=count+(nobjects-200);
+                nobjects=200;
+	  }
+	}
+  }
+  cout &lt;&lt; "Total de bolhas: "&lt;&lt; count &lt;&lt;"\n";
+
+
+  //mudar a cor do fundo
+  p.x=0;
+  p.y=0;
+  floodFill(image,p,100);
+
+  nobjects=0;
+  for(int i=0; i&lt;height; i++){
+    for(int j=0; j&lt;width; j++){
+      if(image.at&lt;uchar&gt;(i,j) == 0){
+                // achou um objeto
+		if(image.at&lt;uchar&gt;(i,j-1)!=50) { //se o pixel anterior for tiver label 50 significa que ele ja tinha contado um buraco antes
+			nobjects++;
+               		p.x=j-1; //pega opixel anterior que pertence a bolha
+                        p.y=i;
+                        floodFill(image,p,50); //as bolhas que tiverem buraco vao ter a cor 50.
+		}
+		p.x=j;
+		p.y=i;
+                floodFill(image,p,1); //Os buracos terao cor 1
+          }
+        }
+  }
+  comburaco=nobjects;
+  semburaco=count-comburaco;
+  cout &lt;&lt; "Bolhas com buraco: "&lt;&lt; comburaco &lt;&lt;"\n";
+  cout &lt;&lt; "Bolhas sem burracos: "&lt;&lt; semburaco &lt;&lt;"\n";
+
+  imshow("image", image);
+  imwrite("labeling.png", image);
+  waitKey();
+  return 0;
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -613,7 +733,7 @@ int main(int argc, char** argv){
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-08 01:37:58 BRT
+Last updated 2016-09-08 02:04:03 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
