@@ -437,7 +437,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_2_manipulando_pixels_em_uma_imagem">2. Manipulando pixels em uma imagem</a>
 <ul class="sectlevel2">
 <li><a href="#_2_1_negativo_de_uma_região_da_imagem">2.1 Negativo de uma região da imagem</a></li>
-<li><a href="#_2_2_trocando_regiões_de_uma_imagem">2.2 Trocando regiões de uma imagem</a></li>
 </ul>
 </li>
 </ul>
@@ -458,65 +457,64 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_2_1_negativo_de_uma_região_da_imagem">2.1 Negativo de uma região da imagem</h3>
 <div class="paragraph">
-<p><a href="http://agostinhobritojr.github.io/tutoriais/pdi/#_exerc%C3%ADcios">Ver exercício 3.2.1</a></p>
-</div>
-<div class="paragraph">
-<p>O programa tem como parâmetro o caminho para um arquivo de imagem, que será carregada em um objeto do tipo Mat no formato de tons de cinza.
-Uma região retangular dessa imagem, definida pelo usuário através das variaveis P1X, P2X, P1Y e P2Y, terá seus valores negativados, para
-isso o valores dos pixels da região selecionada será 255 subtraído por ele mesmo. Dessa forma, a região definida pelo usuário terá tons
-de cinza opostos ao original, criando o efeito de negativo.</p>
-</div>
-<div class="paragraph">
-<p>Abaixo encontra-se o código do programa <a href="Projetos/regions.cpp">regions.cpp</a>.</p>
+<p>Abaixo encontra-se o código do programa <a href="regions.cpp">regions.cpp</a>.</p>
 </div>
 <div id="exa_regions" class="listingblock">
 <div class="title">Listagem 1: regions.cpp</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp">#include &lt;iostream&gt;
 #include &lt;cv.h&gt;
-#include "opencv2/highgui/highgui.hpp"
-
-/*
-    Quatro parametros são entrada para esse programa, Xi, Xf, Yi e Yf, que são
-    usado para determinar a região que será negativada.
-*/
+#include &lt;highgui.h&gt;
 
 using namespace cv;
 using namespace std;
 
-int main(int, char** argv){
-    Mat img;
-    int P1X, P1Y, P2X, P2Y;
+int main(int, char**){
+  Mat image;
+  Vec3b val;
+  int x1, x2, y1, y2;
 
-    img= imread(argv[1], CV_LOAD_IMAGE_GRAYSCALE);
-    if(!img.data)
-       cout &lt;&lt; "error - image can't open" &lt;&lt; endl;
+  image= imread("bolhas.png",CV_LOAD_IMAGE_GRAYSCALE);
+  if(!image.data)
+    cout &lt;&lt; "nao abriu bolhas.png" &lt;&lt; endl;
 
-    int xMax = img.rows;
-    int yMax = img.cols;
+  namedWindow("janela",WINDOW_AUTOSIZE);
 
-    cout &lt;&lt; "size (" &lt;&lt; xMax &lt;&lt; ", " &lt;&lt; yMax &lt;&lt; ")" &lt;&lt; endl;
+  cout&lt;&lt;"Insira as coordenadas do ponto P1(x1,y1): ";
+  cin&gt;&gt;x1&gt;&gt;y1;
+  cout&lt;&lt;"Insira as coordenadas do ponto P2(x2,y2): ";
+  cin&gt;&gt;x2&gt;&gt;y2;
 
-    cout &lt;&lt; "Xi = ";
-    cin &gt;&gt; P1X;
-    cout &lt;&lt; "Xf = ";
-    cin &gt;&gt; P2X;
-
-    cout &lt;&lt; "Yi = ";
-    cin &gt;&gt; P1Y;
-    cout &lt;&lt; "Yf = ";
-    cin &gt;&gt; P2Y;
-
-    for (int i = P1X; i &lt; P2X; i++) {
-        for (int j = P1Y; j &lt; P2Y; j++) {
-            img.at&lt;uchar&gt;(i,j) = 255 - img.at&lt;uchar&gt;(i,j); // Operação de negativo pixel = 255 - pixel
+  if(x1&lt;x2 &amp;&amp; y1&lt;y2){
+      for(int i=x1;i&lt;x2;i++){
+        for(int j=y1;j&lt;y2;j++){
+          image.at&lt;uchar&gt;(i,j)=255- image.at&lt;uchar&gt;(i,j);
         }
-    }
+      }
+  }else if(x1&gt;x2 &amp;&amp; y1&lt;y2){
+      for(int i=x2;i&lt;x1;i++){
+        for(int j=y1;j&lt;y2;j++){
+          image.at&lt;uchar&gt;(i,j)=255- image.at&lt;uchar&gt;(i,j);
+        }
+      }
+  }else if(x1&lt;x2 &amp;&amp; y1&gt;y2){
+      for(int i=x1;i&lt;x2;i++){
+        for(int j=y2;j&lt;y1;j++){
+          image.at&lt;uchar&gt;(i,j)=255- image.at&lt;uchar&gt;(i,j);;
+        }
+      }
+  }else{
+      for(int i=x2;i&lt;x1;i++){
+        for(int j=y2;j&lt;y1;j++){
+          image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);
+        }
+      }
+  }
 
-    namedWindow("window",WINDOW_AUTOSIZE);
-    imshow("window", img);
-    waitKey();
-    return 0;
+  imshow("janela", image);
+  waitKey();
+
+  return 0;
 }</code></pre>
 </div>
 </div>
@@ -536,123 +534,12 @@ int main(int, char** argv){
 <div class="title">Figure 2. Imagem processada</div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_2_2_trocando_regiões_de_uma_imagem">2.2 Trocando regiões de uma imagem</h3>
-<div class="paragraph">
-<p><a href="http://agostinhobritojr.github.io/tutoriais/pdi/#_exerc%C3%ADcios">Ver exercício 3.2.2</a></p>
-</div>
-<div class="paragraph">
-<p>O programa <a href="#exa_troca_regions">trocaRegioes.cpp</a> tem como parâmetro um caminho para uma imagem, que será então carregada em tons de cinza. Esta imagem será dividida em quatro subregiões que serão embaralhadas, criando um quebra-cabeça, conforme um vetor de índices gerado randomicamente. Para a formação do quebra-cabeça os vetores 'vert', que armazena as coordenadas x e y das 4 subregiões no formato[x0,y0,x1,y2,&#8230;&#8203;],
-e o vetor 'vertPuzzle', que contêm a ordem em que as subregiões irão entrar na imagem do quebra-cabeça. A função copyTo(Mat, ROI) foi usada para fazer a cópia da região da imagem original para a nova região, dada pelo vetor 'vertPuzzle', no quebra-cabeça.</p>
-</div>
-<div class="paragraph">
-<p><a href="Projetos/trocaRegioes.cpp">Clique aqui</a> para obter o código do programa abaixo.</p>
-</div>
-<div id="exa_troca_regions" class="listingblock">
-<div class="title">Listagem 2: trocaRegioes.cpp</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cpp">#include &lt;iostream&gt;
-#include &lt;cv.h&gt;
-#include "opencv2/highgui/highgui.hpp"
-#define NSUBIMAGES 4
-
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;time.h&gt;
-
-using namespace cv;
-using namespace std;
-
-int main(int, char** argv){
-    Mat img;
-    Mat newImg;
-
-    img = imread(argv[1], CV_LOAD_IMAGE_GRAYSCALE);
-
-    if (!img.data) {
-        cout &lt;&lt; "Image " &lt;&lt; argv[1] &lt;&lt; " could not be opened";
-    }
-
-    int imgRows = img.rows;
-    int imgCols = img.cols;
-    int subImageRows = imgRows/(NSUBIMAGES/2);
-    int subImageCols = imgCols/(NSUBIMAGES/2);
-
-    vector&lt;int&gt; vert;
-    //vector&lt;Mat&gt; subImgs;
-    vector&lt;int&gt; vertPuzzle;
-
-    cout &lt;&lt; "image size: " &lt;&lt; imgRows &lt;&lt; "x" &lt;&lt; imgCols &lt;&lt; endl;
-
-    cout &lt;&lt; "sub image size: " &lt;&lt; subImageRows &lt;&lt; "x" &lt;&lt; subImageCols &lt;&lt; endl;
-
-    //cria vetor com os pontos de inicio de cada sub imagem
-    for (int i =0 ; i &lt; NSUBIMAGES/2; i++) {
-        for (int j = 0; j &lt; NSUBIMAGES/2; j++) {
-            vert.push_back(i*subImageRows);
-            vert.push_back(j*subImageCols);
-            cout &lt;&lt; "vertice: (" &lt;&lt; i*subImageRows &lt;&lt; "," &lt;&lt; j*subImageCols &lt;&lt; ")" &lt;&lt; endl;
-        }
-    }
-
-    //cria vetor aleatorio para criacao do quebra cabeca
-    while (vertPuzzle.size()&lt;NSUBIMAGES) {
-        int temp = rand() % NSUBIMAGES;
-        int flag = -1;
-        for (int i = 0; i &lt; vertPuzzle.size() ; i++) {
-            if (temp == vertPuzzle.at(i)) {
-                flag = 1;
-            }
-        }
-        if (flag == -1) {
-            vertPuzzle.push_back(temp);
-        }
-    }
-
-    //imprime o vetor de reordenacao na tela
-    cout &lt;&lt; "vetor de reordenção: ";
-    for (int i=0; i&lt; vertPuzzle.size(); i++) {
-        cout &lt;&lt; vertPuzzle.at(i) &lt;&lt; ", ";
-    }
-    cout &lt;&lt; endl;;
-
-
-    newImg = img.clone();
-    //rotina para copiar uma RIO da imagem original para outra posicao no quebra cabeca
-    for (int i = 0; i &lt; NSUBIMAGES; i++) {
-        int x = vert.at(2*vertPuzzle.at(i)+1);
-        int y = vert.at(2*vertPuzzle.at(i));
-	int x0 = vert.at(2*i+1);
-        int y0 = vert.at(2*i);
-        Mat(img, Rect(x0, y0, subImageCols, subImageRows)).copyTo(Mat(newImg, Rect(x, y, subImageCols,subImageRows)));
-    }
-
-    namedWindow("PuzzleImage", WINDOW_AUTOSIZE);
-    imshow("PuzzleImage", newImg);
-    namedWindow("Image", WINDOW_AUTOSIZE);
-    imshow("Image", img);
-
-    waitKey();
-    return 0;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>O resultado do processamento acima na imagem <a href="images/arara.png">arara.png</a> está mostrado na imagem abaixo.</p>
-</div>
-<div id="fig_troca_regions_arara" class="imageblock">
-<div class="content">
-<img src="images/troca_regions_arara.png" alt="Imagem processada">
-</div>
-<div class="title">Figure 3. Imagem processada</div>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-08 00:14:45 BRT
+Last updated 2016-09-08 00:33:20 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
