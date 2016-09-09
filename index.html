@@ -5,7 +5,6 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<meta name="author" content="DJANILSON LOPES MARTINS, MARIA JOSIELE DE QUEIROZ &lt, josiele j@hotmail.com&gt">
 <title>Processamento Digital de Imagens</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -485,51 +484,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .listingblock .pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body class="article">
 <div id="header">
 <h1>Processamento Digital de Imagens</h1>
-<div class="details">
-<span id="author" class="author">DJANILSON LOPES MARTINS</span><br>
-<span id="email" class="email"><a href="mailto:djanlm@yahoo.com.br">djanlm@yahoo.com.br</a></span><br>
-<span id="author2" class="author">MARIA JOSIELE DE QUEIROZ &lt</span><br>
-<span id="author3" class="author">josiele j@hotmail.com&gt</span><br>
-</div>
-<div id="toc" class="toc2">
-<div id="toctitle">Sumário</div>
-<ul class="sectlevel1">
-<li><a href="#_1_introdução">1. Introdução</a></li>
-<li><a href="#_2_manipulando_pixels_em_uma_imagem">2. Manipulando pixels em uma imagem</a>
-<ul class="sectlevel2">
-<li><a href="#_2_1_negativo_de_uma_região_da_imagem">2.1 Negativo de uma região da imagem</a></li>
-<li><a href="#_2_2_trocar_regiões_da_imagem">2.2 Trocar regiões da imagem</a></li>
-</ul>
-</li>
-<li><a href="#_3_preenchendo_regiões">3. Preenchendo regiões</a>
-<ul class="sectlevel2">
-<li><a href="#_3_1_rotulação_com_mais_de_255_objetos">3.1 Rotulação com mais de 255 objetos</a></li>
-<li><a href="#_3_2_contagem_bolhas">3.2 Contagem Bolhas</a></li>
-</ul>
-</li>
-<li><a href="#_4_manipulação_de_histogramas">4. Manipulação de histogramas</a>
-<ul class="sectlevel2">
-<li><a href="#_4_1_equalização_de_histogramas">4.1 Equalização de histogramas</a></li>
-<li><a href="#_4_2_detector_de_movimento">4.2 Detector de movimento</a></li>
-</ul>
-</li>
-<li><a href="#_5_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</a>
-<ul class="sectlevel2">
-<li><a href="#_5_1">5.1</a></li>
-</ul>
-</li>
-</ul>
-</div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>DJANILSON LOPES MARTINS &lt;<a href="mailto:djanlm@yahoo.com.br">djanlm@yahoo.com.br</a>&gt;;
+MARIA JOSIELE DE QUEIROZ &lt;<a href="mailto:josiele_j@hotmail.com">josiele_j@hotmail.com</a>&gt;;</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_1_introdução">1. Introdução</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Escrever Introducao</p>
+<p>Esta página é destinada a postagem dos dos exercícios da disciplina de Processamento Digital de Imagens, do Departamento de Engenharia de Computação e Automação da UFRN. Ministrada pelo Professor Agostinho Brito Jr. no semestre de 2016.2.</p>
 </div>
 </div>
 </div>
@@ -631,6 +603,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_2_2_trocar_regiões_da_imagem">2.2 Trocar regiões da imagem</h3>
 <div class="paragraph">
+<p>Abaixo encontra-se o código do programa <a href="trocaregioes.cpp">trocaregioes.cpp</a>.</p>
+</div>
+<div class="paragraph">
 <p>[[exa_ trocaregioes, trocaregioes.cpp]]</p>
 </div>
 <div class="listingblock">
@@ -712,7 +687,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_3_1_rotulação_com_mais_de_255_objetos">3.1 Rotulação com mais de 255 objetos</h3>
+<div class="paragraph">
+<p>No programa labeling.cpp fornecido, cada objeto encontrado é rotulado com um valor na escala de tons de cinza. Os computadores representam valores de tons de cinza que variam entre 0 e 255, portanto, quando há mais do que 255 objetos na cena, a rotulação fica comprometida pois  mais tons de cinza que possam ser utilizados para rotular o restante dos objetos.</p>
+</div>
+<div class="paragraph">
+<p>Uma solução seria resetar a contagem da variável nobjects, o que pode ser facilmente feito com a função módulo. Abaixo encontra-se trecho de código modificado a partir do programa <a href="labeling.cpp">labeling.cpp</a>.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>   //...
 
+   floodFill(image, p, nobjects % 255);
+
+   //...</pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_3_2_contagem_bolhas">3.2 Contagem Bolhas</h3>
@@ -727,6 +716,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <img src="bolhasOutput.png" alt="Imagem processada">
 </div>
 <div class="title">Figure 7. Imagem processada</div>
+</div>
+<div class="paragraph">
+<p>Abaixo encontra-se o código do programa <a href="labeling.cpp">labeling.cpp</a>.</p>
 </div>
 <div id="exa_labeling" class="listingblock">
 <div class="title">Listagem 3: labeling.cpp</div>
@@ -850,7 +842,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_4_1_equalização_de_histogramas">4.1 Equalização de histogramas</h3>
 <div class="paragraph">
-<p>O objetivo desse algoritmo é realizar a equalização do histograma de cada frame do video capturado por um webcam e exibir as imagens antes e depois de aplicar esse efeito.</p>
+<p>O objetivo desse algoritmo é realizar a equalização do histograma de cada frame do video capturado por um webcam e exibir as imagens antes e depois de aplicar esse efeito. Abaixo encontra-se o código do programa <a href="equalize.cpp">equalize.cpp</a>.</p>
 </div>
 <div id="exa_equalize" class="listingblock">
 <div class="title">Listagem 4: equalize.cpp</div>
@@ -993,12 +985,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_5_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_5_1">5.1</h3>
+<h3 id="_5_1_concatenação_de_filtros">5.1 Concatenação de Filtros</h3>
 <div class="paragraph">
 <p>Nesse programa, o objetivo é inserir mais uma opção de filtragem aos filtros já existentes no programa filtroespacial.cpp. O novo filtro é a aplicação de dois filtros já existentes no qual o primeiro filtro aplicado é o gaussiano e o segundo é o laplaciano.</p>
 </div>
 <div class="paragraph">
 <p>Todo o programa filtroespacial foi aproveitado e acrescentou-se uma flag que é ativada quando a opção para aplicar o laplaciano do gaussiano é selecionada. Essa flag faz com que a filtragem laplaciana seja feita após a filtragem gaussiana ter sido realizada.</p>
+</div>
+<div class="paragraph">
+<p>Abaixo encontra-se o código do programa <a href="laplgauss.cpp">laplgauss.cpp</a>.</p>
 </div>
 <div id="exa_laplgauss" class="listingblock">
 <div class="title">Listagem 6: laplgauss.cpp</div>
@@ -1235,7 +1230,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-09 00:59:29 BRT
+Last updated 2016-09-09 01:50:02 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
