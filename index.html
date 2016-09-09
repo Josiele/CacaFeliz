@@ -845,17 +845,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_4_1_equalização_de_histogramas">4.1 Equalização de histogramas</h3>
-<div class="paragraph">
-<p>Objetivo</p>
+<div class="literalblock">
+<div class="content">
+<pre>O objetivo desse algoritmo é realizar a equalização do histograma de cada frame do video capturado por um webcam e exibir as imagens antes e depois de aplicar esse efeito.</pre>
+</div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>O objetivo desse algoritmo é realizar a equalização do histograma de cada frame do video capturado por um webcam e exibir as imagens antes e depois de aplicar esse efeito.
-O histograma de uma imagem quantifica quantos de seus pixels possui determinada intensidade de cor. No caso de uma imagem em escala de cinza onde cada pixel é representado por 8 bits, o histograma mostra quantos pixels possuem cada um dos valores entre 0 e 255.
-A equalização do histograma consiste em melhor distribuir as intensidades entre os pixels e, desse modo, aumentar o contraste na imagem
-Para a realização da equalização, um novo objeto da classe Mat nomeada img_hist_equalized foi criado para armazenar as imagens geradas após o processo de equalização. Tambêm foram criados o objeto histEq para armazenar o histograma da imagem equalizada e o objeto histImgEq para desenhar o histograma na tela.
-O processo de equalização resume-se a apenas um passo, que é o uso da função equalizeHist(image, img_hist_equalized). Tal função recebe como parâmetros a matriz da imagem a ser equalizada e a matriz do resultado.
-Em seguida, já é possível exibir a imagem com o resultado da equalização usando a função imshow(). Porém, para fins didáticos decidiu-se exibir também o histograma da imagem equalizada. Então, usou-se o método calcHist(), para calcular o histograma da imagem equalizada na matriz histEq e desenhou-se o histograma usando a função line(). Por fim, copiou-se a imagem do histograma na imagem equalizada e exibiu-se as duas imagens na tela.</pre>
+<pre>O histograma de uma imagem quantifica quantos de seus pixels possui determinada intensidade de cor. No caso de uma imagem em escala de cinza onde cada pixel é representado por 8 bits, o histograma mostra quantos pixels possuem cada um dos valores entre 0 e 255.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>A equalização do histograma consiste em melhor distribuir as intensidades entre os pixels e, desse modo, aumentar o contraste na imagem</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Para a realização da equalização, um novo objeto da classe Mat nomeada img_hist_equalized foi criado para armazenar as imagens geradas após o processo de equalização. Tambêm foram criados o objeto histEq para armazenar o histograma da imagem equalizada e o objeto histImgEq para desenhar o histograma na tela.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>O processo de equalização resume-se a apenas um passo, que é o uso da função equalizeHist(image, img_hist_equalized). Tal função recebe como parâmetros a matriz da imagem a ser equalizada e a matriz do resultado.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Em seguida, já é possível exibir a imagem com o resultado da equalização usando a função imshow(). Porém, para fins didáticos decidiu-se exibir também o histograma da imagem equalizada. Então, usou-se o método calcHist(), para calcular o histograma da imagem equalizada na matriz histEq e desenhou-se o histograma usando a função line(). Por fim, copiou-se a imagem do histograma na imagem equalizada e exibiu-se as duas imagens na tela.</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -863,11 +880,17 @@ Em seguida, já é possível exibir a imagem com o resultado da equalização us
 <pre>A saída do programa é mostrada na figura a seguir juntamente com a imagem original para fins de comparação.</pre>
 </div>
 </div>
-<div id="fig_tigre" class="imageblock">
+<div id="fig_ImagemEqualizadaInput" class="imageblock">
 <div class="content">
-<img src="tigre.png" alt="Imagem original">
+<img src="ImagemEqualizadaInput.png" alt="Imagem original">
 </div>
 <div class="title">Figure 7. Imagem original</div>
+</div>
+<div id="fig_ImagemEqualizadaOutput" class="imageblock">
+<div class="content">
+<img src="ImagemEqualizadaOutput.png" alt="Imagem equalizada">
+</div>
+<div class="title">Figure 8. Imagem equalizada</div>
 </div>
 <div class="paragraph">
 <p>Pode-se observar que após a equalização o contraste da imagem ficou maior. Além disso, no canto superior esquerdo vê-se os histogramas de cada imagem, o que permite concluir que o histograma da imagem equalizada apresenta uma maior uniformidade entre os tons de cinza presentes.</p>
@@ -904,20 +927,20 @@ Em seguida, já é possível exibir a imagem com o resultado da equalização us
 <div class="paragraph">
 <p>Filtro Gaussiano:</p>
 </div>
-<div class="paragraph">
-<p>O filtro gaussiano tem a finalidade de causar uma suavização ou desfoque na imagem. A mudança verificada é bastante sutil com o filtro que foi utilizado.</p>
-</div>
-<div id="fig_tigre" class="imageblock">
+<div id="fig_gaussInput" class="imageblock">
 <div class="content">
-<img src="tigre.png" alt="Imagem original">
-</div>
-<div class="title">Figure 8. Imagem original</div>
-</div>
-<div id="fig_tigre" class="imageblock">
-<div class="content">
-<img src="tigre.png" alt="Imagem original">
+<img src="gaussInput.png" alt="Imagem original">
 </div>
 <div class="title">Figure 9. Imagem original</div>
+</div>
+<div id="fig_gaussOutput" class="imageblock">
+<div class="content">
+<img src="gaussOutput.png" alt="Imagem processada">
+</div>
+<div class="title">Figure 10. Imagem processada</div>
+</div>
+<div class="paragraph">
+<p>O filtro gaussiano tem a finalidade de causar uma suavização ou desfoque na imagem. A mudança verificada é bastante sutil com o filtro que foi utilizado.</p>
 </div>
 <div class="paragraph">
 <p>Filtro Horizontal:</p>
@@ -925,17 +948,17 @@ Em seguida, já é possível exibir a imagem com o resultado da equalização us
 <div class="paragraph">
 <p>O filtro horizontal tem por finalidade destacar as bordas verticais da imagem. Como pode-se ver nas imagens do resultado, as bordas de transições de pixels mais escuros para pixels mais claros apresentaram maior destaque. Esse fenômeno se deve ao tipo de filtro utilizado no qual a primeira coluna apresenta números negativos e a terceira coluna apresenta números positivos. O mesmo efeito é observado no filtro vertical.</p>
 </div>
-<div id="fig_tigre" class="imageblock">
+<div id="fig_FiltrohorizontalInput" class="imageblock">
 <div class="content">
-<img src="tigre.png" alt="Imagem original">
-</div>
-<div class="title">Figure 10. Imagem original</div>
-</div>
-<div id="fig_tigre" class="imageblock">
-<div class="content">
-<img src="tigre.png" alt="Imagem original">
+<img src="FiltrohorizontalInput.png" alt="Imagem original">
 </div>
 <div class="title">Figure 11. Imagem original</div>
+</div>
+<div id="fig_FiltrohorizontalOutput" class="imageblock">
+<div class="content">
+<img src="FiltrohorizontalOutput.png" alt="Imagem processada">
+</div>
+<div class="title">Figure 12. Imagem processada</div>
 </div>
 <div class="paragraph">
 <p>Filtro Vertical:</p>
@@ -943,17 +966,17 @@ Em seguida, já é possível exibir a imagem com o resultado da equalização us
 <div class="paragraph">
 <p>O filtro vertical tem por finalidade realçar as bordas verticais da imagem.</p>
 </div>
-<div id="fig_tigre" class="imageblock">
+<div id="fig_FiltroVerticalInput" class="imageblock">
 <div class="content">
-<img src="tigre.png" alt="Imagem original">
-</div>
-<div class="title">Figure 12. Imagem original</div>
-</div>
-<div id="fig_tigre" class="imageblock">
-<div class="content">
-<img src="tigre.png" alt="Imagem original">
+<img src="FiltroVerticalInput.png" alt="Imagem original">
 </div>
 <div class="title">Figure 13. Imagem original</div>
+</div>
+<div id="fig_FiltroVerticalOutput" class="imageblock">
+<div class="content">
+<img src="FiltroVerticalOutput.png" alt="Imagem processada">
+</div>
+<div class="title">Figure 14. Imagem processada</div>
 </div>
 <div class="paragraph">
 <p>Filtro Laplaciano:</p>
@@ -961,17 +984,17 @@ Em seguida, já é possível exibir a imagem com o resultado da equalização us
 <div class="paragraph">
 <p>Como ficou bastante evidente na imagem com o uso do filtro laplaciano é possível detectar bordas.</p>
 </div>
-<div id="fig_tigre" class="imageblock">
+<div id="fig_laplacianoInput" class="imageblock">
 <div class="content">
-<img src="tigre.png" alt="Imagem original">
-</div>
-<div class="title">Figure 14. Imagem original</div>
-</div>
-<div id="fig_tigre" class="imageblock">
-<div class="content">
-<img src="tigre.png" alt="Imagem original">
+<img src="laplacianoInput.png" alt="Imagem original">
 </div>
 <div class="title">Figure 15. Imagem original</div>
+</div>
+<div id="fig_laplacianoOutput" class="imageblock">
+<div class="content">
+<img src="laplacianoOutput.png" alt="Imagem processada">
+</div>
+<div class="title">Figure 16. Imagem processada</div>
 </div>
 <div class="paragraph">
 <p>Filtro Laplaciano do Gaussiano:</p>
@@ -979,17 +1002,17 @@ Em seguida, já é possível exibir a imagem com o resultado da equalização us
 <div class="paragraph">
 <p>Ao aplicar o filtro gaussiano e logo em seguida o laplaciano consegue-se maior destaque nas bordas, mas também causa o surgimento de ruído.</p>
 </div>
-<div id="fig_tigre" class="imageblock">
+<div id="fig_laplacianoDogaussianoInput" class="imageblock">
 <div class="content">
-<img src="tigre.png" alt="Imagem original">
-</div>
-<div class="title">Figure 16. Imagem original</div>
-</div>
-<div id="fig_tigre" class="imageblock">
-<div class="content">
-<img src="tigre.png" alt="Imagem original">
+<img src="laplacianoDogaussianoInput.png" alt="Imagem original">
 </div>
 <div class="title">Figure 17. Imagem original</div>
+</div>
+<div id="fig_laplacianoDogaussianoOutput" class="imageblock">
+<div class="content">
+<img src="laplacianoDogaussianoOutput.png" alt="Imagem processada">
+</div>
+<div class="title">Figure 18. Imagem processada</div>
 </div>
 </div>
 </div>
@@ -997,7 +1020,7 @@ Em seguida, já é possível exibir a imagem com o resultado da equalização us
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-08 23:28:44 BRT
+Last updated 2016-09-09 00:03:47 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
