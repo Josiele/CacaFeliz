@@ -703,7 +703,7 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Este exemplo recebe como entrada a imagem, e ter como saída a imagem <a href="#fig_Josi">Josi.png</a>, e o resultado obtido é mostrado na imagem <a href="#fig_JosiMixed">[fig_JosiMixed]</a>.</p>
+<p>Este exemplo recebe como entrada a imagem, e ter como saída a imagem <a href="#fig_Josi">Josi.png</a>, e o resultado obtido é mostrado na imagem <a href="#fig_JosiMixed">JosiMixed.png</a>.</p>
 </div>
 <div id="fig_Josi" class="imageblock">
 <div class="content">
@@ -711,7 +711,7 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 </div>
 <div class="title">Figure 4. Imagem original</div>
 </div>
-<div id="fig_Josi" class="imageblock">
+<div id="fig_JosiMixed" class="imageblock">
 <div class="content">
 <img src="JosiMixed.png" alt="Imagem processada">
 </div>
@@ -1244,9 +1244,10 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 <div class="paragraph">
 <p>Os resultados advindos da aplicação dos diversos filtros são mostrados nas imagens a seguir:</p>
 </div>
+<div class="sect3">
+<h4 id="_filtro_gaussiano">Filtro Gaussiano:</h4>
 <div class="paragraph">
-<p>====Filtro Gaussiano:
-O filtro gaussiano tem a finalidade de causar uma suavização ou desfoque na imagem. A mudança verificada é bastante sutil com o filtro que foi utilizado.</p>
+<p>O filtro gaussiano tem a finalidade de causar uma suavização ou desfoque na imagem. A mudança verificada é bastante sutil com o filtro que foi utilizado.</p>
 </div>
 <div id="fig_gaussInput" class="imageblock">
 <div class="content">
@@ -1260,9 +1261,11 @@ O filtro gaussiano tem a finalidade de causar uma suavização ou desfoque na im
 </div>
 <div class="title">Figure 11. Imagem processada</div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_filtro_horizontal">Filtro Horizontal:</h4>
 <div class="paragraph">
-<p>====Filtro Horizontal:
-O filtro horizontal tem por finalidade destacar as bordas verticais da imagem. Como pode-se ver nas imagens do resultado, as bordas de transições de pixels mais escuros para pixels mais claros apresentaram maior destaque. Esse fenômeno se deve ao tipo de filtro utilizado no qual a primeira coluna apresenta números negativos e a terceira coluna apresenta números positivos. O mesmo efeito é observado no filtro vertical.</p>
+<p>O filtro horizontal tem por finalidade destacar as bordas verticais da imagem. Como pode-se ver nas imagens do resultado, as bordas de transições de pixels mais escuros para pixels mais claros apresentaram maior destaque. Esse fenômeno se deve ao tipo de filtro utilizado no qual a primeira coluna apresenta números negativos e a terceira coluna apresenta números positivos. O mesmo efeito é observado no filtro vertical.</p>
 </div>
 <div id="fig_FiltrohorizontalInput" class="imageblock">
 <div class="content">
@@ -1276,9 +1279,11 @@ O filtro horizontal tem por finalidade destacar as bordas verticais da imagem. C
 </div>
 <div class="title">Figure 13. Imagem processada</div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_filtro_vertical">Filtro Vertical:</h4>
 <div class="paragraph">
-<p>====Filtro Vertical:
-O filtro vertical tem por finalidade realçar as bordas verticais da imagem.</p>
+<p>O filtro vertical tem por finalidade realçar as bordas verticais da imagem.</p>
 </div>
 <div id="fig_FiltroVerticalInput" class="imageblock">
 <div class="content">
@@ -1292,9 +1297,11 @@ O filtro vertical tem por finalidade realçar as bordas verticais da imagem.</p>
 </div>
 <div class="title">Figure 15. Imagem processada</div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_filtro_laplaciano">Filtro Laplaciano:</h4>
 <div class="paragraph">
-<p>====Filtro Laplaciano:
-Como ficou bastante evidente na imagem com o uso do filtro laplaciano é possível detectar bordas.</p>
+<p>Como ficou bastante evidente na imagem com o uso do filtro laplaciano é possível detectar bordas.</p>
 </div>
 <div id="fig_laplacianoInput" class="imageblock">
 <div class="content">
@@ -1308,9 +1315,11 @@ Como ficou bastante evidente na imagem com o uso do filtro laplaciano é possív
 </div>
 <div class="title">Figure 17. Imagem processada</div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_filtro_laplaciano_do_gaussiano">Filtro Laplaciano do Gaussiano:</h4>
 <div class="paragraph">
-<p>====Filtro Laplaciano do Gaussiano:
-Ao aplicar o filtro gaussiano e logo em seguida o laplaciano consegue-se maior destaque nas bordas, mas também causa o surgimento de ruído.</p>
+<p>Ao aplicar o filtro gaussiano e logo em seguida o laplaciano consegue-se maior destaque nas bordas, mas também causa o surgimento de ruído.</p>
 </div>
 <div id="fig_laplacianoDogaussianoInput" class="imageblock">
 <div class="content">
@@ -1323,6 +1332,7 @@ Ao aplicar o filtro gaussiano e logo em seguida o laplaciano consegue-se maior d
 <img src="laplacianoDogausianoOutput.png" alt="Imagem original">
 </div>
 <div class="title">Figure 19. Imagem original</div>
+</div>
 </div>
 </div>
 </div>
@@ -1477,7 +1487,7 @@ Texto que Djan vai Mandar.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-17 18:10:36 BRT
+Last updated 2016-09-17 18:18:19 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
