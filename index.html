@@ -743,6 +743,9 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 </div>
 <div class="sect2">
 <h3 id="_3_2_contagem_bolhas">3.2 Contagem Bolhas</h3>
+<div class="paragraph">
+<p>O objetivo desse algoritmo é identificar regiões com ou sem buracos internos que existam na cena, sendo que podem existir objetos com mais de um buraco. Primeiramente foram desconsiderados os objetos que tocam as bordas, pois não temos informações suficiente pra afirmar se estes objetos possuem ou não buracos. Em seguida foi contada a quantidade total de bolhas independente se estas tinham ou não buracos. Então foi alterada  a cor do fundo, para podermos diferencia-lo da cor dos buracos. Por fim foram contadas a quantidade de bolhas com um ou mais buracos, e foi feita a subtração da quantidade total de bolhas para se chegar a quantidade de bolhas sem buracos. Na saída o programa exibe a quantidade total de objetos, a quantidade de objetos com buracos e também a quantidade de objetos sem buracos. Todos esses passos que envolveram mudaça de cor e contagem de objetos da imagem foram feitos com uso do algoritmo floodfill e podem ser melhor observadas no código do programa <a href="labeling.cpp">labeling.cpp</a>.</p>
+</div>
 <div id="fig_bolhas" class="imageblock">
 <div class="content">
 <img src="bolhas.png" alt="Imagem">
@@ -817,7 +820,7 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
   <span class="tok-p">}</span>
   <span class="tok-c1">//final de tirar as bolhas das bordas</span>
 
-  <span class="tok-kt">int</span> <span class="tok-n">count</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-c1">//Acro que esse contador eh a resposta da primeira pergunta da secao 4</span>
+  <span class="tok-kt">int</span> <span class="tok-n">count</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
 
   <span class="tok-c1">//busca objetos com e sem buracos presentes(desconsiderando os das bordas) mantendo a cor das bolhas</span>
   <span class="tok-n">nobjects</span><span class="tok-o">=</span><span class="tok-mi">200</span><span class="tok-p">;</span>
@@ -1493,7 +1496,7 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-17 18:22:58 BRT
+Last updated 2016-09-17 18:54:44 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
