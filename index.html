@@ -744,7 +744,10 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 <div class="sect2">
 <h3 id="_3_2_contagem_bolhas">3.2 Contagem Bolhas</h3>
 <div class="paragraph">
-<p>O objetivo desse algoritmo é identificar regiões com ou sem buracos internos que existam na cena, sendo que podem existir objetos com mais de um buraco. Primeiramente foram desconsiderados os objetos que tocam as bordas, pois não temos informações suficiente pra afirmar se estes objetos possuem ou não buracos. Em seguida foi contada a quantidade total de bolhas independente se estas tinham ou não buracos. Então foi alterada  a cor do fundo, para podermos diferencia-lo da cor dos buracos. Por fim foi contada a quantidade de bolhas com um ou mais buracos, e foi feita a subtração da quantidade total de bolhas para se chegar a quantidade de bolhas sem buracos. Na saída o programa exibe a quantidade total de objetos, a quantidade de objetos com buracos e também a quantidade de objetos sem buracos. Todos esses passos que envolveram mudaça de cor e contagem de objetos da imagem foram feitos com uso do algoritmo floodfill e podem ser melhor observadas no código do programa <a href="labeling.cpp">labeling.cpp</a>.</p>
+<p>O objetivo desse algoritmo é identificar regiões com ou sem buracos internos que existam na cena, sendo que podem existir objetos com mais de um buraco. Primeiramente foram desconsiderados os objetos que tocam as bordas, pois não temos informações suficiente pra afirmar se estes objetos possuem ou não buracos. Em seguida foi contada a quantidade total de bolhas independente se estas tinham ou não buracos. Então foi alterada  a cor do fundo, para podermos diferencia-lo da cor dos buracos. Por fim foi contada a quantidade de bolhas com um ou mais buracos, e foi feita a subtração da quantidade total de bolhas para se chegar a quantidade de bolhas sem buracos.</p>
+</div>
+<div class="paragraph">
+<p>Na saída o programa exibe a quantidade total de objetos, a quantidade de objetos com buracos e também a quantidade de objetos sem buracos. Todos esses passos que envolveram mudaça de cor e contagem de objetos da imagem foram feitos com uso do algoritmo floodfill e podem ser melhor observadas no código do programa <a href="labeling.cpp">labeling.cpp</a>.</p>
 </div>
 <div id="fig_bolhas" class="imageblock">
 <div class="content">
@@ -1347,7 +1350,7 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 <div class="sect2">
 <h3 id="_6_1_tilt_shift">6.1 Tilt-shift</h3>
 <div class="paragraph">
-<p>Texto que Djan vai Mandar.</p>
+<p>Para criar o efeito tiltshift, são criadas duas matrizes com a mesma imagem. Utiliza-se, então, um filtro de média 5x5 para desfocar uma das imagens. No código, são realizadas seis filtragens seguidas para que fosse feito um desfoque adequado para o efeito final. Em seguida, a função addWeightened é usada para mesclar as duas imagens fazendo a ponderação delas de acordo com a equação g(x,y)=α(x)f(x,y)+(1−α(x))bf(x,y), onde o fator alfa é calculado seguindo a função α(x)=1/2(tanhx−l1)/d)−tanh((x−l2)/d. Nesta função l1 e l2 são as linhas cujo valor de α assume valor em torno de 0.5 e d é o decaimento entre o o valor máximo e mínimo, ou seja, quão rápido a função altera seu valor de 0 para 1. O cálculo de  alfa ocorre enquanto as matrizes são percorridas linha a linha. Desse modo, a cada linha alfa assume um novo valor. A imagem desfocada tem maior peso nas bordas da imagem, enquanto a imagem original possui maior peso entre as duas regiões de desfoque. Exemplos de imagens criadas a partir desse programa são mostradas adiante.</p>
 </div>
 <div class="paragraph">
 <p>Abaixo encontra-se o código do programa <a href="tiltshift.cpp">tiltshift.cpp</a>.</p>
@@ -1475,13 +1478,16 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 <span class="tok-p">}</span></code></pre>
 </div>
 </div>
-<div id="fig_carros_semEfeito" class="imageblock">
+<div class="paragraph">
+<p>Aplicamos o algoritmo informando as entradas P1(x1, y1) = (180, 130) e P2(x2, y2)= (500, 500) para a imagem <a href="#fig_carrosInput">carros_semEfeito.png</a>, e o resultado obtido é mostrado na imagem <a href="#carroOutput">[carroOutput]</a>.</p>
+</div>
+<div id="fig_carrosInput" class="imageblock">
 <div class="content">
 <img src="carros_semEfeito.png" alt="Imagem original">
 </div>
 <div class="title">Figure 20. Imagem original</div>
 </div>
-<div id="fig_carro-ComEfeito" class="imageblock">
+<div id="fig_carroOutput" class="imageblock">
 <div class="content">
 <img src="carro-ComEfeito.png" alt="Imagem processada">
 </div>
@@ -1493,7 +1499,7 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-17 18:57:29 BRT
+Last updated 2016-09-17 19:17:11 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
