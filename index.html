@@ -79,7 +79,7 @@ a:hover,a:focus{color:#1d4b8f}
 a img{border:none}
 p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
 p aside{font-size:.875em;line-height:1.35;font-style:italic}
-h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#6a006a;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
 h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
 h1{font-size:2.125em}
 h2{font-size:1.6875em}
@@ -521,6 +521,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_5_1_concatenação_de_filtros">5.1 Concatenação de Filtros</a></li>
 </ul>
 </li>
+<li><a href="#_6_filtragem_no_domínio_espacial_ii">6. Filtragem no domínio espacial II</a></li>
 </ul>
 </div>
 </div>
@@ -541,6 +542,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_2_1_negativo_de_uma_região_da_imagem">2.1 Negativo de uma região da imagem</h3>
+<div class="paragraph">
+<p>O objetivo desse programa é selecinar uma região da imagem e substituir essa região pelo seu negativo. O negativo de uma imagem é obtido quando se subtitui o valor de cada pixel pelo seu complemento, o que é feito no trecho a seguir:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>//complemento=255-pixel
+image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
+</div>
+</div>
 <div class="paragraph">
 <p>Abaixo encontra-se o código do programa <a href="regions.cpp">regions.cpp</a>.</p>
 </div>
@@ -604,7 +614,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Aplicamos o algoritmo informando as entradasacho P1(x1, y1) = (180, 130) e P2(x2, y2)= (500, 500), para a imagem <a href="#fig_tigre">tigre.png</a>. O resultado obtido é mostrado na imagem <a href="#fig_negativo_tigre">tigre3.png</a>.</p>
+<p>Aplicamos o algoritmo informando as entradas P1(x1, y1) = (180, 130) e P2(x2, y2)= (500, 500) para a imagem <a href="#fig_tigre">tigre.png</a>, e o resultado obtido é mostrado na imagem <a href="#fig_negativo_tigre">tigre3.png</a>.</p>
 </div>
 <div id="fig_tigre" class="imageblock">
 <div class="content">
@@ -628,12 +638,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_2_2_trocar_regiões_da_imagem">2.2 Trocar regiões da imagem</h3>
 <div class="paragraph">
-<p>Abaixo encontra-se o código do programa <a href="trocaregioes.cpp">trocaregioes.cpp</a>.</p>
+<p>Este programa foi implementado de modo que é gerado um número aleatório e a partir desse número são geradas as coordenadas de um ponto na imagem. A imagem é então subdividida em quatro regiões a partir desse ponto. Essas regiões são então trocadas de lugar, de modo que a região do canto superior esquerdo é trocada com a do canto inferior direito e vice versa, assim como a região do canto superior direito é trocada com a do canto inferior esquerdo e vice versa,  formando como se fosse uma espécie de quebra-cabeças.</p>
 </div>
 <div class="paragraph">
-<p>[[exa_ trocaregioes, trocaregioes.cpp]]</p>
+<p>Abaixo encontra-se o código do programa <a href="trocaregioes.cpp">trocaregioes.cpp</a>.</p>
 </div>
-<div class="listingblock">
+<div id="exa_trocaregioes" class="listingblock">
 <div class="title">Listagem 2: trocaregioes.cpp</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
@@ -692,6 +702,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span class="tok-p">}</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Este exemplo recebe como entrada a imagem, e ter como saída a imagem <a href="#fig_Josi">Josi.png</a>, e o resultado obtido é mostrado na imagem <a href="#fig_JosiMixed">[fig_JosiMixed]</a>.</p>
+</div>
 <div id="fig_Josi" class="imageblock">
 <div class="content">
 <img src="Josi.png" alt="Imagem original">
@@ -720,7 +733,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>   floodFill(image, p, nobjects % 255);</pre>
+<pre>floodFill(image, p, nobjects % 255);</pre>
 </div>
 </div>
 </div>
@@ -1232,7 +1245,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Os resultados advindos da aplicação dos diversos filtros são mostrados nas imagens a seguir:</p>
 </div>
 <div class="paragraph">
-<p>Filtro Gaussiano:</p>
+<p>====Filtro Gaussiano:
+O filtro gaussiano tem a finalidade de causar uma suavização ou desfoque na imagem. A mudança verificada é bastante sutil com o filtro que foi utilizado.</p>
 </div>
 <div id="fig_gaussInput" class="imageblock">
 <div class="content">
@@ -1247,13 +1261,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Figure 11. Imagem processada</div>
 </div>
 <div class="paragraph">
-<p>O filtro gaussiano tem a finalidade de causar uma suavização ou desfoque na imagem. A mudança verificada é bastante sutil com o filtro que foi utilizado.</p>
-</div>
-<div class="paragraph">
-<p>Filtro Horizontal:</p>
-</div>
-<div class="paragraph">
-<p>O filtro horizontal tem por finalidade destacar as bordas verticais da imagem. Como pode-se ver nas imagens do resultado, as bordas de transições de pixels mais escuros para pixels mais claros apresentaram maior destaque. Esse fenômeno se deve ao tipo de filtro utilizado no qual a primeira coluna apresenta números negativos e a terceira coluna apresenta números positivos. O mesmo efeito é observado no filtro vertical.</p>
+<p>====Filtro Horizontal:
+O filtro horizontal tem por finalidade destacar as bordas verticais da imagem. Como pode-se ver nas imagens do resultado, as bordas de transições de pixels mais escuros para pixels mais claros apresentaram maior destaque. Esse fenômeno se deve ao tipo de filtro utilizado no qual a primeira coluna apresenta números negativos e a terceira coluna apresenta números positivos. O mesmo efeito é observado no filtro vertical.</p>
 </div>
 <div id="fig_FiltrohorizontalInput" class="imageblock">
 <div class="content">
@@ -1268,10 +1277,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Figure 13. Imagem processada</div>
 </div>
 <div class="paragraph">
-<p>Filtro Vertical:</p>
-</div>
-<div class="paragraph">
-<p>O filtro vertical tem por finalidade realçar as bordas verticais da imagem.</p>
+<p>====Filtro Vertical:
+O filtro vertical tem por finalidade realçar as bordas verticais da imagem.</p>
 </div>
 <div id="fig_FiltroVerticalInput" class="imageblock">
 <div class="content">
@@ -1286,10 +1293,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Figure 15. Imagem processada</div>
 </div>
 <div class="paragraph">
-<p>Filtro Laplaciano:</p>
-</div>
-<div class="paragraph">
-<p>Como ficou bastante evidente na imagem com o uso do filtro laplaciano é possível detectar bordas.</p>
+<p>====Filtro Laplaciano:
+Como ficou bastante evidente na imagem com o uso do filtro laplaciano é possível detectar bordas.</p>
 </div>
 <div id="fig_laplacianoInput" class="imageblock">
 <div class="content">
@@ -1304,10 +1309,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Figure 17. Imagem processada</div>
 </div>
 <div class="paragraph">
-<p>Filtro Laplaciano do Gaussiano:</p>
-</div>
-<div class="paragraph">
-<p>Ao aplicar o filtro gaussiano e logo em seguida o laplaciano consegue-se maior destaque nas bordas, mas também causa o surgimento de ruído.</p>
+<p>====Filtro Laplaciano do Gaussiano:
+Ao aplicar o filtro gaussiano e logo em seguida o laplaciano consegue-se maior destaque nas bordas, mas também causa o surgimento de ruído.</p>
 </div>
 <div id="fig_laplacianoDogaussianoInput" class="imageblock">
 <div class="content">
@@ -1324,10 +1327,157 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_6_filtragem_no_domínio_espacial_ii">6. Filtragem no domínio espacial II</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>===6.1 Tilt-shift
+Texto que Djan vai Mandar.</p>
+</div>
+<div class="paragraph">
+<p>Abaixo encontra-se o código do programa <a href="tiltshift.cpp">tiltshift.cpp</a>.</p>
+</div>
+<div id="exa_tiltshift" class="listingblock">
+<div class="title">Listagem 7: tiltshift.cpp</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;math.h&gt;</span><span class="tok-cp"></span>
+
+<span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
+<span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
+
+<span class="tok-n">Mat</span> <span class="tok-nf">mask</span><span class="tok-p">(</span><span class="tok-mi">5</span><span class="tok-p">,</span><span class="tok-mi">5</span><span class="tok-p">,</span><span class="tok-n">CV_32F</span><span class="tok-p">),</span> <span class="tok-n">mask1</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">result</span><span class="tok-p">,</span> <span class="tok-n">tilt_shift_image</span><span class="tok-p">;</span>
+
+<span class="tok-kt">double</span> <span class="tok-n">alfa</span><span class="tok-p">;</span>
+<span class="tok-kt">int</span> <span class="tok-n">centro_slider</span> <span class="tok-o">=</span> <span class="tok-mi">50</span><span class="tok-p">;</span>
+<span class="tok-kt">int</span> <span class="tok-n">centro_slider_max</span> <span class="tok-o">=</span> <span class="tok-mi">100</span><span class="tok-p">;</span>
+
+<span class="tok-kt">double</span> <span class="tok-n">l1</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-n">l2</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-n">altura</span><span class="tok-o">=</span><span class="tok-mf">0.2</span><span class="tok-p">;</span>
+<span class="tok-kt">int</span> <span class="tok-n">altura_slider</span><span class="tok-o">=</span><span class="tok-mi">10</span><span class="tok-p">;</span>
+<span class="tok-kt">int</span> <span class="tok-n">altura_slider_max</span><span class="tok-o">=</span><span class="tok-mi">100</span><span class="tok-p">;</span>
+
+<span class="tok-kt">double</span> <span class="tok-n">decaimento</span><span class="tok-o">=</span><span class="tok-mi">1</span><span class="tok-p">;</span>
+
+<span class="tok-kt">int</span> <span class="tok-n">dec_slider</span> <span class="tok-o">=</span> <span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-kt">int</span> <span class="tok-n">dec_slider_max</span> <span class="tok-o">=</span> <span class="tok-mi">100</span><span class="tok-p">;</span>
+
+<span class="tok-n">Mat</span> <span class="tok-n">image1</span><span class="tok-p">,</span> <span class="tok-n">image2</span><span class="tok-p">,</span> <span class="tok-n">blended</span><span class="tok-p">;</span>
+<span class="tok-n">Mat</span> <span class="tok-n">imageTop</span><span class="tok-p">;</span>
+
+<span class="tok-kt">char</span> <span class="tok-n">TrackbarName</span><span class="tok-p">[</span><span class="tok-mi">50</span><span class="tok-p">];</span>
+
+<span class="tok-c1">//funçao para o ajuste do centro do foco e para o calculo de alfa</span>
+<span class="tok-kt">void</span> <span class="tok-nf">on_trackbar_centro</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-p">,</span> <span class="tok-kt">void</span><span class="tok-o">*</span><span class="tok-p">){</span>
+ <span class="tok-kt">double</span> <span class="tok-n">centro</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-kt">double</span><span class="tok-p">)</span> <span class="tok-p">(</span><span class="tok-n">centro_slider</span><span class="tok-o">*</span><span class="tok-n">image1</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">().</span><span class="tok-n">height</span><span class="tok-p">)</span><span class="tok-o">/</span><span class="tok-n">centro_slider_max</span> <span class="tok-p">;</span> <span class="tok-c1">//calcula onde vai ser o centro do foco de acordo com o valor do slider</span>
+ <span class="tok-n">l1</span> <span class="tok-o">=</span> <span class="tok-n">centro</span> <span class="tok-o">-</span> <span class="tok-n">altura</span><span class="tok-o">*</span><span class="tok-n">image1</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">().</span><span class="tok-n">height</span><span class="tok-p">;</span> <span class="tok-c1">//calcula os parametros l1 e l2 a partir do centro</span>
+ <span class="tok-n">l2</span> <span class="tok-o">=</span> <span class="tok-n">centro</span> <span class="tok-o">+</span> <span class="tok-n">altura</span><span class="tok-o">*</span><span class="tok-n">image1</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">().</span><span class="tok-n">height</span><span class="tok-p">;</span>
+
+ <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">l1</span><span class="tok-o">&lt;</span><span class="tok-mi">0</span><span class="tok-p">){</span> <span class="tok-c1">//caso l1 seja menor que 0, ele assume o valor zero</span>
+     <span class="tok-n">l1</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+ <span class="tok-p">}</span>
+ <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">l2</span><span class="tok-o">&gt;</span><span class="tok-n">image1</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">().</span><span class="tok-n">height</span><span class="tok-p">){</span> <span class="tok-c1">//caso l2 seja maior que a altura da imagem ele assume o valor da altura imagem</span>
+   <span class="tok-n">l2</span> <span class="tok-o">=</span> <span class="tok-n">image1</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">().</span><span class="tok-n">height</span><span class="tok-p">;</span>
+ <span class="tok-p">}</span>
+
+ <span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">result</span><span class="tok-p">.</span><span class="tok-n">size</span><span class="tok-p">().</span><span class="tok-n">height</span> <span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span> <span class="tok-c1">//a formula eh calculada linha a linha</span>
+			<span class="tok-n">alfa</span> <span class="tok-o">=</span> <span class="tok-mf">0.5</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">tanh</span><span class="tok-p">((</span><span class="tok-n">i</span><span class="tok-o">-</span><span class="tok-n">l1</span><span class="tok-p">)</span><span class="tok-o">/</span><span class="tok-p">(</span><span class="tok-kt">double</span><span class="tok-p">)(</span><span class="tok-n">decaimento</span><span class="tok-o">+</span><span class="tok-mf">1.0</span><span class="tok-p">))</span><span class="tok-o">-</span><span class="tok-n">tanh</span><span class="tok-p">((</span><span class="tok-n">i</span><span class="tok-o">-</span><span class="tok-n">l2</span><span class="tok-p">)</span><span class="tok-o">/</span><span class="tok-p">(</span><span class="tok-kt">double</span><span class="tok-p">)(</span><span class="tok-n">decaimento</span><span class="tok-o">+</span><span class="tok-mf">1.0</span><span class="tok-p">)));</span>
+			<span class="tok-n">addWeighted</span><span class="tok-p">(</span><span class="tok-n">image1</span><span class="tok-p">.</span><span class="tok-n">row</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">),</span> <span class="tok-n">alfa</span><span class="tok-p">,</span> <span class="tok-n">result</span><span class="tok-p">.</span><span class="tok-n">row</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">),</span> <span class="tok-mf">1.0</span><span class="tok-o">-</span><span class="tok-n">alfa</span><span class="tok-p">,</span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-n">image2</span><span class="tok-p">.</span><span class="tok-n">row</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-p">));</span>
+ <span class="tok-p">}</span>
+ <span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;Tiltshift&quot;</span><span class="tok-p">,</span><span class="tok-n">image2</span><span class="tok-p">);</span> <span class="tok-c1">//mostra a imagem na tela</span>
+ <span class="tok-n">imwrite</span><span class="tok-p">(</span><span class="tok-s">&quot;Tiltshift.png&quot;</span><span class="tok-p">,</span><span class="tok-n">image2</span><span class="tok-p">);</span> <span class="tok-c1">//cria nova imagem</span>
+<span class="tok-p">}</span>
+
+<span class="tok-c1">//função para ajustar a altura da região com foco</span>
+<span class="tok-kt">void</span> <span class="tok-nf">on_trackbar_altura</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-p">,</span> <span class="tok-kt">void</span><span class="tok-o">*</span> <span class="tok-p">){</span>
+  <span class="tok-n">altura</span><span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-kt">double</span><span class="tok-p">)</span><span class="tok-n">altura_slider</span><span class="tok-o">/</span><span class="tok-n">altura_slider_max</span><span class="tok-p">;</span>
+  <span class="tok-n">on_trackbar_centro</span><span class="tok-p">(</span><span class="tok-n">centro_slider</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
+<span class="tok-p">}</span>
+
+<span class="tok-c1">//calcula o decaimento</span>
+<span class="tok-kt">void</span> <span class="tok-nf">on_trackbar_decaimento</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-p">,</span> <span class="tok-kt">void</span><span class="tok-o">*</span><span class="tok-p">){</span>
+  <span class="tok-n">decaimento</span><span class="tok-o">=</span><span class="tok-n">dec_slider</span><span class="tok-p">;</span>
+  <span class="tok-n">on_trackbar_centro</span><span class="tok-p">(</span><span class="tok-n">centro_slider</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
+<span class="tok-p">}</span>
+
+<span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">argvc</span><span class="tok-p">,</span> <span class="tok-kt">char</span><span class="tok-o">**</span> <span class="tok-n">argv</span><span class="tok-p">){</span>
+
+  <span class="tok-c1">///*****Filtro Média*****///</span>
+  <span class="tok-kt">float</span> <span class="tok-n">media</span><span class="tok-p">[]</span> <span class="tok-o">=</span> <span class="tok-p">{</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span>
+                   <span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span>
+	           <span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span>
+                   <span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span>
+                   <span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">};</span> <span class="tok-c1">//o filtro 3x3 não estava embaçando o suficiente pra criar um efeito bom</span>
+
+  <span class="tok-n">mask</span> <span class="tok-o">=</span> <span class="tok-n">Mat</span><span class="tok-p">(</span><span class="tok-mi">5</span><span class="tok-p">,</span> <span class="tok-mi">5</span><span class="tok-p">,</span> <span class="tok-n">CV_32F</span><span class="tok-p">,</span> <span class="tok-n">media</span><span class="tok-p">);</span>
+  <span class="tok-n">scaleAdd</span><span class="tok-p">(</span><span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-o">/</span><span class="tok-mf">25.0</span><span class="tok-p">,</span> <span class="tok-n">Mat</span><span class="tok-o">::</span><span class="tok-n">zeros</span><span class="tok-p">(</span><span class="tok-mi">5</span><span class="tok-p">,</span><span class="tok-mi">5</span><span class="tok-p">,</span><span class="tok-n">CV_32F</span><span class="tok-p">),</span> <span class="tok-n">mask1</span><span class="tok-p">);</span>
+  <span class="tok-n">swap</span><span class="tok-p">(</span><span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">mask1</span><span class="tok-p">);</span>
+
+  <span class="tok-n">image1</span> <span class="tok-o">=</span> <span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-s">&quot;blend5.jpg&quot;</span><span class="tok-p">);</span> <span class="tok-c1">//carrega imagem</span>
+  <span class="tok-n">image1</span><span class="tok-p">.</span><span class="tok-n">copyTo</span><span class="tok-p">(</span><span class="tok-n">image2</span><span class="tok-p">);</span> <span class="tok-c1">//criar a copia da imagem1 que será embaçada</span>
+
+ <span class="tok-c1">//O filtro é aplicado varias vezes para criar um desfoque suficiente</span>
+        <span class="tok-n">image2</span><span class="tok-p">.</span><span class="tok-n">convertTo</span><span class="tok-p">(</span><span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">CV_32F</span><span class="tok-p">);</span>
+	<span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-mi">2</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
+	<span class="tok-n">frame32f</span> <span class="tok-o">=</span> <span class="tok-n">frameFiltered</span><span class="tok-p">;</span>
+	<span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-mi">2</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
+	<span class="tok-n">frame32f</span> <span class="tok-o">=</span> <span class="tok-n">frameFiltered</span><span class="tok-p">;</span>
+	<span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-mi">2</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
+        <span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-mi">2</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
+	<span class="tok-n">frame32f</span> <span class="tok-o">=</span> <span class="tok-n">frameFiltered</span><span class="tok-p">;</span>
+	<span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-mi">2</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
+	<span class="tok-n">frame32f</span> <span class="tok-o">=</span> <span class="tok-n">frameFiltered</span><span class="tok-p">;</span>
+	<span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-mi">2</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
+	<span class="tok-n">frameFiltered</span><span class="tok-p">.</span><span class="tok-n">convertTo</span><span class="tok-p">(</span><span class="tok-n">result</span><span class="tok-p">,</span> <span class="tok-n">CV_8U</span><span class="tok-p">);</span>
+
+  <span class="tok-n">namedWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;Tiltshift&quot;</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-p">);</span>
+
+  <span class="tok-n">sprintf</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;Centro de foco x %d&quot;</span><span class="tok-p">,</span> <span class="tok-n">centro_slider_max</span> <span class="tok-p">);</span>
+  <span class="tok-n">createTrackbar</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;Tiltshift&quot;</span><span class="tok-p">,</span>
+				  <span class="tok-o">&amp;</span><span class="tok-n">centro_slider</span><span class="tok-p">,</span>
+				  <span class="tok-n">centro_slider_max</span><span class="tok-p">,</span>
+				  <span class="tok-n">on_trackbar_centro</span> <span class="tok-p">);</span>
+
+  <span class="tok-n">on_trackbar_centro</span><span class="tok-p">(</span><span class="tok-n">centro_slider</span><span class="tok-p">,</span> <span class="tok-mi">0</span> <span class="tok-p">);</span>
+
+  <span class="tok-n">sprintf</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;Decaimento x %d&quot;</span><span class="tok-p">,</span> <span class="tok-n">dec_slider_max</span> <span class="tok-p">);</span>
+  <span class="tok-n">createTrackbar</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;Tiltshift&quot;</span><span class="tok-p">,</span>
+				  <span class="tok-o">&amp;</span><span class="tok-n">dec_slider</span><span class="tok-p">,</span>
+				  <span class="tok-n">dec_slider_max</span><span class="tok-p">,</span>
+				  <span class="tok-n">on_trackbar_decaimento</span> <span class="tok-p">);</span>
+
+  <span class="tok-n">on_trackbar_decaimento</span><span class="tok-p">(</span><span class="tok-n">dec_slider</span><span class="tok-p">,</span> <span class="tok-mi">0</span> <span class="tok-p">);</span>
+
+  <span class="tok-n">sprintf</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;Altura do foco x %d&quot;</span><span class="tok-p">,</span> <span class="tok-n">altura_slider_max</span> <span class="tok-p">);</span>
+  <span class="tok-n">createTrackbar</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;Tiltshift&quot;</span><span class="tok-p">,</span>
+				  <span class="tok-o">&amp;</span><span class="tok-n">altura_slider</span><span class="tok-p">,</span>
+				  <span class="tok-n">altura_slider_max</span><span class="tok-p">,</span>
+				  <span class="tok-n">on_trackbar_altura</span> <span class="tok-p">);</span>
+  <span class="tok-n">on_trackbar_altura</span><span class="tok-p">(</span><span class="tok-n">altura_slider</span><span class="tok-p">,</span> <span class="tok-mi">0</span> <span class="tok-p">);</span>
+
+  <span class="tok-n">waitKey</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span>
+  <span class="tok-k">return</span> <span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div id="fig_carro-semEfeito" class="imageblock">
+<div class="content">
+<img src="carro-semEfeito.png" alt="Imagem original">
+</div>
+<div class="title">Figure 20. Imagem original</div>
+</div>
+<div id="fig_carro-ComEfeito" class="imageblock">
+<div class="content">
+<img src="carro-ComEfeito.png" alt="Imagem processada">
+</div>
+<div class="title">Figure 21. Imagem processada</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-09 03:13:50 BRT
+Last updated 2016-09-17 18:10:36 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
