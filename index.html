@@ -744,7 +744,7 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 <div class="sect2">
 <h3 id="_3_2_contagem_bolhas">3.2 Contagem Bolhas</h3>
 <div class="paragraph">
-<p>O objetivo desse algoritmo é identificar regiões com ou sem buracos internos que existam na cena, sendo que podem existir objetos com mais de um buraco. Primeiramente foram desconsiderados os objetos que tocam as bordas, pois não temos informações suficiente pra afirmar se estes objetos possuem ou não buracos. Em seguida foi contada a quantidade total de bolhas independente se estas tinham ou não buracos. Então foi alterada  a cor do fundo, para podermos diferencia-lo da cor dos buracos. Por fim foram contadas a quantidade de bolhas com um ou mais buracos, e foi feita a subtração da quantidade total de bolhas para se chegar a quantidade de bolhas sem buracos. Na saída o programa exibe a quantidade total de objetos, a quantidade de objetos com buracos e também a quantidade de objetos sem buracos. Todos esses passos que envolveram mudaça de cor e contagem de objetos da imagem foram feitos com uso do algoritmo floodfill e podem ser melhor observadas no código do programa <a href="labeling.cpp">labeling.cpp</a>.</p>
+<p>O objetivo desse algoritmo é identificar regiões com ou sem buracos internos que existam na cena, sendo que podem existir objetos com mais de um buraco. Primeiramente foram desconsiderados os objetos que tocam as bordas, pois não temos informações suficiente pra afirmar se estes objetos possuem ou não buracos. Em seguida foi contada a quantidade total de bolhas independente se estas tinham ou não buracos. Então foi alterada  a cor do fundo, para podermos diferencia-lo da cor dos buracos. Por fim foi contada a quantidade de bolhas com um ou mais buracos, e foi feita a subtração da quantidade total de bolhas para se chegar a quantidade de bolhas sem buracos. Na saída o programa exibe a quantidade total de objetos, a quantidade de objetos com buracos e também a quantidade de objetos sem buracos. Todos esses passos que envolveram mudaça de cor e contagem de objetos da imagem foram feitos com uso do algoritmo floodfill e podem ser melhor observadas no código do programa <a href="labeling.cpp">labeling.cpp</a>.</p>
 </div>
 <div id="fig_bolhas" class="imageblock">
 <div class="content">
@@ -757,9 +757,6 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 <img src="bolhasOutput.png" alt="Imagem processada">
 </div>
 <div class="title">Figure 7. Imagem processada</div>
-</div>
-<div class="paragraph">
-<p>Abaixo encontra-se o código do programa <a href="labeling.cpp">labeling.cpp</a>.</p>
 </div>
 <div id="exa_labeling" class="listingblock">
 <div class="title">Listagem 3: labeling.cpp</div>
@@ -1496,7 +1493,7 @@ image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-17 18:54:44 BRT
+Last updated 2016-09-17 18:57:29 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
