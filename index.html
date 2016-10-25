@@ -1531,20 +1531,39 @@ if(compar&gt;(comparold+50) || compar&lt;(comparold-50)){
 </div>
 <div id="fig_esquema_filtragem" class="imageblock">
 <div class="content">
-<img src="EsquemaFiltragemDFT.png" alt="Imagem original">
+<img src="EsquemaFiltragemDFT.png" alt="Esquema de Filtragem DFT">
 </div>
-<div class="title">Figure 22. Imagem original</div>
+<div class="title">Figure 22. Etapas da filtragem no domínio da frequência</div>
 </div>
 <div class="sect2">
 <h3 id="_7_1_filtragem_homomórfica">7.1 Filtragem Homomórfica</h3>
-
+<div class="paragraph">
+<p>O objetivo dessa prática é realizar uma filtragem homomórfica. Esse tipo de filtragem atenua as frequências baixas e mantém as altas. No entanto, para que a filtragem seja realizada adequadamente é necessário separar a iluminância da reflectância da imagem aplicando logaritmo e, assim, separar as componentes de baixa e alta frequências antes de fazer a transformada. Após a separação dessas duas componentes é utilizado um filtro que é uma versão modificada do filtro gaussiano. A equação desse filtro é mostrada na imagem <a href="#fig_filtro_H">Filtro homomórfico.png</a>.</p>
+</div>
+<div id="fig_filtro_H" class="paragraph">
+<div class="title">Filtro Homomórfico</div>
+<p>image::Filtro homomórfico.png[Filtro Homomórfico, title="Filtro H(u,v) utilizado para atenuar as baixas frequências"]</p>
+</div>
+<div class="paragraph">
+<p>Na equação da figura <a href="#fig_filtro_H">Filtro homomórfico.png</a>, o termo D(u,v) corresponde à equação apresentada na figura <a href="#fig_Duv">Duv.png</a>. A figura &lt;&lt;&gt;&gt; ilustra o gráfico do filtro.</p>
+</div>
+<div id="fig_Duv" class="imageblock">
+<div class="content">
+<img src="Duv.png" alt="Equação que determina o valor de D(u" width="v)">
+</div>
+<div class="title">Figure 23. Equação que determina o valor de D(u,v)</div>
+</div>
+<div id="fig_grafico" class="paragraph">
+<div class="title">Gráfico do filtro aplicado no experimento</div>
+<p>image::Gráfico do filtro homomórfico.png[ráfico do filtro aplicado no experimento, title="ráfico do filtro aplicado no experimento"]</p>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-25 11:10:15 BRT
+Last updated 2016-10-25 11:28:24 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
