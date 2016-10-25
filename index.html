@@ -162,7 +162,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toc li{line-height:1.3334;margin-top:.3334em}
 #toc a{text-decoration:none}
 #toc a:active{text-decoration:underline}
-#toctitle{color:#812b5a;font-size:1.2em}
+#toctitle{color:#7a2518;font-size:1.2em}
 @media only screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
 #toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
@@ -189,7 +189,7 @@ body.toc2.toc-right{padding-left:0;padding-right:20em}}
 #content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
 #content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
 #content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
-#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#008282;text-decoration:none}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
 #content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
 .audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
 .admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
@@ -208,7 +208,7 @@ table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inh
 .sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
 .sidebarblock>:first-child{margin-top:0}
 .sidebarblock>:last-child{margin-bottom:0}
-.sidebarblock>.content>.title{color:#153911;margin-top:0;text-align:center}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
 .exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
 .literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
 .sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
@@ -524,6 +524,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_6_filtragem_no_domínio_espacial_ii">6. Filtragem no domínio espacial II</a>
 <ul class="sectlevel2">
 <li><a href="#_6_1_tilt_shift">6.1 Tilt-shift</a></li>
+</ul>
+</li>
+<li><a href="#_7_filtragem_no_domínio_da_frequência">7. Filtragem no domínio da frequência</a>
+<ul class="sectlevel2">
+<li><a href="#_7_1_filtragem_homomórfica">7.1 Filtragem Homomórfica</a></li>
 </ul>
 </li>
 </ul>
@@ -1515,10 +1520,31 @@ if(compar&gt;(comparold+50) || compar&lt;(comparold-50)){
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_7_filtragem_no_domínio_da_frequência">7. Filtragem no domínio da frequência</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Em algumas situações, o uso de filtros no domínio espacial não resolve os defeitos que se precisa eliminar da imagem. Nesse tipo de situação procura-se usar a filtragem no domínio da frequência a partir de uma imagem transformada pelo uso da transformada rápida de Fourier (DFT).</p>
+</div>
+<div class="paragraph">
+<p>O processo de filtragem no domínio da frequência pode ser resumido de acordo com a figura <a href="#fig_esquema_filtragem">EsquemaFiltragemDFT.png</a> a seguir.</p>
+</div>
+<div id="fig_esquema_filtragem" class="imageblock">
+<div class="content">
+<img src="EsquemaFiltragemDFT.png" alt="Imagem original">
+</div>
+<div class="title">Figure 22. Imagem original</div>
+</div>
+<div class="sect2">
+<h3 id="_7_1_filtragem_homomórfica">7.1 Filtragem Homomórfica</h3>
+
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-17 19:53:30 BRT
+Last updated 2016-10-25 11:10:15 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
